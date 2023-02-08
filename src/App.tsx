@@ -1,80 +1,43 @@
-import { useState, useEffect } from 'react';
+import { useState, FC } from 'react';
 import './app.css';
+import { Button, ButtonC } from './button';
 
-export const App = () => {
-    const [res, setRes] = useState('');
+export const App: FC = (): JSX.Element => {
+    const [res, setRes] = useState<string>('');
 
-    const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-        setRes(res + e.currentTarget.value);
-        console.log(typeof e.currentTarget.value);
+    const handleClick = (event: React.MouseEvent<HTMLButtonElement>): void => {
+        setRes(res + event.currentTarget.value);
     };
 
-    const result = () => {
+    const result = (): void => {
         setRes(eval(res).toString());
     };
-    const clear = () => {
+    const clear = (): void => {
         setRes('');
     };
 
     return (
-        <div>
-            <div className="buttons_container">
-                <div className="res">
-                    <p>{res}</p>
-                </div>
-
-                <button className="cal_button c" value="c" onClick={clear}>
-                    C
-                </button>
-                <button className="cal_button" value="7" onClick={handleClick}>
-                    7
-                </button>
-                <button className="cal_button" value="8" onClick={handleClick}>
-                    8
-                </button>
-                <button className="cal_button" value="9" onClick={handleClick}>
-                    9
-                </button>
-                <button className="cal_button" value="/" onClick={handleClick}>
-                    /
-                </button>
-                <button className="cal_button" value="4" onClick={handleClick}>
-                    4
-                </button>
-                <button className="cal_button" value="5" onClick={handleClick}>
-                    5
-                </button>
-                <button className="cal_button" value="6" onClick={handleClick}>
-                    6
-                </button>
-                <button className="cal_button" value="*" onClick={handleClick}>
-                    *
-                </button>
-                <button className="cal_button" value="1" onClick={handleClick}>
-                    1
-                </button>
-                <button className="cal_button" value="2" onClick={handleClick}>
-                    2
-                </button>
-                <button className="cal_button" value="3" onClick={handleClick}>
-                    3
-                </button>
-                <button className="cal_button" value="-" onClick={handleClick}>
-                    -
-                </button>
-                <button className="cal_button" value="," onClick={handleClick}>
-                    ,
-                </button>
-                <button className="cal_button" value="0" onClick={handleClick}>
-                    0
-                </button>
-                <button className="cal_button" value="=" onClick={result}>
-                    =
-                </button>
-                <button className="cal_button" value="+" onClick={handleClick}>
-                    +
-                </button>
+        <div className="buttons_container">
+            <div className="res">
+                <p>{res}</p>
             </div>
+            <ButtonC value="C" fun={clear}></ButtonC>
+            <Button value="7" fun={handleClick}></Button>
+            <Button value="8" fun={handleClick}></Button>
+            <Button value="9" fun={handleClick}></Button>
+            <Button value="/" fun={handleClick}></Button>
+            <Button value="4" fun={handleClick}></Button>
+            <Button value="5" fun={handleClick}></Button>
+            <Button value="6" fun={handleClick}></Button>
+            <Button value="*" fun={handleClick}></Button>
+            <Button value="1" fun={handleClick}></Button>
+            <Button value="2" fun={handleClick}></Button>
+            <Button value="3" fun={handleClick}></Button>
+            <Button value="-" fun={handleClick}></Button>
+            <Button value="." fun={handleClick}></Button>
+            <Button value="0" fun={handleClick}></Button>
+            <Button value="=" fun={result}></Button>
+            <Button value="+" fun={handleClick}></Button>
         </div>
     );
 };
